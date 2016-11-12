@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Carros</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="node_modules/angular-toastr/dist/angular-toastr.css">
+
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="app/config/app.js"></script>
+    <script src="node_modules/angular-messages/angular-messages.js"></script>
+    <script src="node_modules/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="app/service/alert.service.js"></script>
+    <script src="maius"></script>
+
+    <script src="app/controller/cadastro-carro.controller.js"></script>
+</head>
+<body ng-app="pdApp" class="container">
+<div ng-controller="CarroController">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Carros</h1>
+        </div>
+        <!--Utilizar sempre ng-bind-->
+        <!--Colocar ::diretiva para remover da lista de binding-->
+        <div class="panel-body">
+            <form name="carroForm" novalidate>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error' : carroForm.modeloCarro.$invalid && carroForm.modeloCarro.$touched }">
+                            <label class="control-label">Modelo</label>
+                            <input type="text" class="form-control"
+                                   ng-model="entidade.modelo"
+                                   ng-required="true"
+                                   ng-minlength="2"
+                                   ng-maxlength="20"
+                                   name="modeloCarro"
+                                   >
+                            <div class="text-danger" ng-messages="carroForm.modeloCarro.$error" ng-if="carroForm.modeloCarro.$touched">
+                                <div ng-messages-include="app/template/input-ng-messages.html"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error' : carroForm.modeloCarro.$invalid && carroForm.modeloCarro.$touched }">
+                            <label class="control-label">Marca</label>
+                            <input type="text" name="marcaCarro" class="form-control" ng-model="entidade.marca">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error' : carroForm.modeloCarro.$invalid && carroForm.modeloCarro.$touched }">
+                            <label class="control-label">Cor</label>
+                            <input type="text" name="corCarro" class="form-control" ng-model="entidade.cor">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error' : carroForm.modeloCarro.$invalid && carroForm.modeloCarro.$touched }">
+                            <label class="control-label">Ano</label>
+                            <input type="date" name="corCarro" class="form-control" ng-model="entidade.ano">
+
+                        </div>
+                    </div>
+                </div>
+                <button  class="btn btn-primary" ng-click="salvar()">Salvar</button>
+                <button  class="btn btn-default" ng-click="limpar()">Limpar</button>
+                <table class="table table-striped" ng-if="carros.length > 0">
+                    <thead>
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Marca</th>
+                        <th>Cor</th>
+                        <th class="text-center">...</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="carro in carros">
+                        <td>
+                            <span ng-bind="carro.modeloCarro | maiusculo"></span>
+                        </td>
+                        <td>
+                           <span ng-bind="carro.marcaCarro | maiusculo"></span>
+                        </td>
+                        <td>
+                            <span ng-bind="carro.corCarro | maiusculo "></span>
+                        </td>
+                        <td>
+                            <span ng-bind="carro.ano | date : 'dd/MM/yyyy'"></span>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-primary" ng-click="editar(carro)">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

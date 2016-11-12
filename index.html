@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
+
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="app/config/app.js"></script>
+    <script src="app/controller/index.controller.js"></script>
+</head>
+<body ng-app="pdApp" class="container">
+    <div ng-controller="IndexController">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <h1>{{nome}} {{sobrenome}}</h1>
+                </div>
+            </div>
+        </div>
+
+       <button  class="btn btn-default" ng-click="ola()">Teste</button>
+       <div class="row">
+           <div class="col-md-3">
+             <div class="form-group">
+                 <label>Nome</label>
+                 <input type="text" class="form-control" ng-model="nome">
+
+             </div>
+           </div>
+           <div class="col-md-3">
+               <div class="form-group">
+                   <label>Sobrenome</label>
+                   <input type="text" class="form-control" ng-model="sobrenome">
+
+               </div>
+           </div>
+           <div class="col-md-3">
+               <div class="form-group">
+                   <label>Nome</label>
+                   <input type="text" class="form-control">
+
+               </div>
+           </div>
+           <div class="col-md-3">
+               <div class="form-group">
+                   <label>Nome</label>
+                   <input type="text" class="form-control">
+
+               </div>
+           </div>
+       </div>
+    </div>
+</body>
+</html>
